@@ -11,6 +11,6 @@ Gem::Specification.new do |s|
   s.authors       = ["Adam Cooke"]
   s.email         = ["me@adamcooke.io"]
   s.licenses      = ['MIT']
-  s.add_dependency "graphql-client", ">= 0.12.2"
+  s.add_dependency "graphql-client", ">= 0.16.0"
   s.add_development_dependency "rake"
 end

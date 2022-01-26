@@ -17,6 +17,7 @@ module AbeClient
             thumbnail: image(type:thumb800) {
               url
             }
+            header_style
             image(type:thumb1400) {
               url
             }

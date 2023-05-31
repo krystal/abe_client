@@ -10,7 +10,7 @@ module AbeClient
     GRAPHQL
 
     def self.add(blog, email_address, first_name = nil, last_name = nil, identity_uid = nil)
-      result = Client.query(AddSubscriberMutation, {
+      result = Client.query(AddSubscriberMutation,
         :variables => {
           :blog => blog,
           :email_address => email_address,
@@ -18,7 +18,7 @@ module AbeClient
           :last_name => last_name,
           :identity_uid => identity_uid
         }
-      })
+      )
 
       if result.data.add_subscriber && result.data.add_subscriber.id
         result.data.add_subscriber

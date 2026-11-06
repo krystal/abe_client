@@ -74,7 +74,7 @@ module AbeClient
 
     def self.get(blog, post, browser_id)
       result = Client.query(PostQuery, :variables => {:blog => blog, :post => post, :browser_id => browser_id})
-      if result.data.blog && result.data.blog.post
+      if result.data && result.data.blog && result.data.blog.post
         self.new(result.data.blog.post)
       elsif !result.errors.empty?
         raise AbeClient::Error, result.errors.messages.map { |k,v| "#{k}: #{v.join(', ')}"}.join("\n")
@@ -103,7 +103,7 @@ module AbeClient
 
     def self.toggle_reaction(post_id, reaction, browser_id, ip_address, user_agent)
       result = Client.query(AddReactionMutation, :variables => {:post_id => post_id, :reaction => reaction, :browser_id => browser_id, :ip_address => ip_address, :user_agent => user_agent})
-      if result.data.toggle_post_reaction && result.data.toggle_post_reaction.id
+      if result.data && result.data.toggle_post_reaction && result.data.toggle_post_reaction.id
         result.data.toggle_post_reaction
       else
         false

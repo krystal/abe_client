@@ -62,7 +62,7 @@ module AbeClient
 
     def self.get(blog_permalink)
       result = Client.query(BlogHomepageQuery, :variables => {:blog => blog_permalink})
-      if result.data.blog
+      if result.data && result.data.blog
         self.new(result.data)
       elsif !result.errors.empty?
         raise AbeClient::Error, result.errors.messages.map { |k,v| "#{k}: #{v.join(', ')}"}.join("\n")

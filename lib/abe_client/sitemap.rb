@@ -19,7 +19,7 @@ module AbeClient
 
     def self.get(blog)
       result = Client.query(SitemapQuery, :variables => {:blog => blog})
-      if result.data.blog && result.data.blog.categories && result.data.blog.posts.posts
+      if result.data && result.data.blog && result.data.blog.categories && result.data.blog.posts.posts
         self.new(result.data.blog.categories, result.data.blog.posts.posts)
       elsif !result.errors.empty?
         raise AbeClient::Error, result.errors.messages.map { |k,v| "#{k}: #{v.join(', ')}"}.join("\n")

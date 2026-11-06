@@ -20,7 +20,7 @@ module AbeClient
         }
       )
 
-      if result.data.add_subscriber && result.data.add_subscriber.id
+      if result.data && result.data.add_subscriber && result.data.add_subscriber.id
         result.data.add_subscriber
       else
         false

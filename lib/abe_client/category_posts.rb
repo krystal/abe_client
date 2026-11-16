@@ -47,8 +47,10 @@ module AbeClient
       result = Client.query(CategoryPostsQuery, :variables => {:blog => blog, :category => category, :page => page, :per_page => options[:per_page] || 12})
       if result.data && result.data.category
         self.new(result.data.category)
-      else
+      elsif !result.errors.empty?
         raise AbeClient::Error, result.errors.messages.map { |k,v| "#{k}: #{v.join(', ')}"}.join("\n")
+      else
+        nil
       end
     end
 
